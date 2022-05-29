@@ -1,45 +1,20 @@
-import { createWebHistory, createRouter } from "vue-router";
-const routes =  [
-  {
-    path: "/",
-    alias: "/tutorials",
-    name: "tutorials",
-    component: () => import("./views/TutorialsList.vue")
-  },
-  {
-    path: "/edit/:id",
-    name: "edit",
-    component: () => import("./views/EditTutorial.vue"),
-    props: true
-  },
-  {
-    path: "/add",
-    name: "add",
-    component: () => import("./views/AddTutorial.vue")
-  },
-  {
-    path: "/view",
-    name: "view",
-    component: () => import("./views/ViewTutorial.vue"),
-    props: true
-  },
-  {
-    path: "/addLesson",
-    name: "addLesson",
-    component: () => import("./views/AddLesson.vue"),
-    props: true
-  },
-  {
-    path: "/editLesson",
-    name: "editLesson",
-    component: () => import("./views/EditLesson.vue"),
-    props: true
-  }
-];
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '/src/components/Home.vue'
+import CreateAlbum from '/src/components/CreateAlbum.vue'
+const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+    },
+    {
+        path: '/createalbum',
+        name: 'Create',
+        component: CreateAlbum,
+    },
+]
 const router = createRouter({
-  base: process.env.NODE_ENV === 'development' ? '/' : '/tutorial-frontend-1/',
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
-});
-
-export default router;
+    history: createWebHistory(),
+    routes,
+})
+export default router
