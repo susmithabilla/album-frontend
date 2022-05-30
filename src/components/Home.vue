@@ -14,6 +14,9 @@
                                 <th class="px-6 py-2 text-xs text-white">
                                     Artist
                                 </th>
+                                 <th class="px-6 py-2 text-xs text-white">
+                                    Year
+                                </th>
                                 <th class="px-6 py-2 text-xs text-white">
                                     Created_at
                                 </th>
@@ -29,17 +32,22 @@
                             <tr class="whitespace-nowrap" v-for="album in albums" :key="album.id" :album="album">
 
                                 <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">
+                                    <div class="text-sm text-gray-900" @click="viewAlbum(album)">
                                         {{ album.title }}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
+                                   
                                     <div class="text-sm text-gray-500">{{ album.artist }}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                   
+                                    <div class="text-sm text-gray-500">Year</div>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                    {{new Date(Date.now()).toLocaleDateString()}}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4" @click="editAlbum(album)">
                                     <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,7 +76,7 @@
 </template>
 
 <script>
-import AlbumDataService from "../services/AlbumDataService";
+import AlbumsDataService from "../services/AlbumsDataService";
 
 export default {
     name: "albums-list",
@@ -85,14 +93,15 @@ export default {
         // TutorialDisplay
     },
     methods: {
-        // goEdit(album) {
-        //   this.$router.push({ name: 'edit', params: { id: tutorial.id } });
-        // },
-        // goView(album) {
-        //   this.$router.push({ name: 'view', params: { id: tutorial.id } });
-        // },
+        editAlbum(album) {
+          this.$router.push({ name: 'editalbum', params: { id: album.id } });
+        },
+        viewAlbum(album) {
+           
+          this.$router.push({ name: 'viewalbum', params: { id: album.id } });
+        },
         deleteAlbum(album) {
-          AlbumDataService.delete(album.id)
+          AlbumsDataService.delete(album.id)
             .then( () => {
 
               this.retrieveAlbums()
@@ -102,7 +111,7 @@ export default {
             });
         },
         retrieveAlbums() {
-            AlbumDataService.getAll()
+            AlbumsDataService.getAll()
                 .then(response => {
                     this.albums = response.data;
 
