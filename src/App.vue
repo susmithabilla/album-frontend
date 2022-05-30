@@ -34,7 +34,7 @@ export default {
   }),
   methods: {
     createalbum() {
-      this.$router.push({ name: 'Create' });
+      this.$router.push({ name: 'createalbum' });
     }
   },
 
