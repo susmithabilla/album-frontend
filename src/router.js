@@ -23,6 +23,7 @@ const routes = [
         name: 'editalbum',
         component: () => import("/src/components/EditAlbum.vue"),
     },
+   
 ]
 const router = createRouter({
     history: createWebHistory(),

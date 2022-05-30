@@ -9,7 +9,7 @@ class AlbumsDataService {
   create(data, inputfile) {
     let formdata = new FormData();
     formdata.append("file", inputfile);
-    return http.post(`/albums?title=${data.title}&artist=${data.artist}&description=${data.description}`, formdata, {
+    return http.post(`/albums?name=${data.name}&artist=${data.artist}&description=${data.description}`, formdata, {
       headers: { "Content-Type": "multipart/form-data"}
     });
   }
@@ -25,7 +25,7 @@ class AlbumsDataService {
     return http.delete(`/albums`);
   }
   findByTitle(title) {
-    return http.get(`/albums?title=${title}`);
+    return http.get(`/albums?name=${title}`);
   }
 }
 
