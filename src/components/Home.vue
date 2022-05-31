@@ -8,13 +8,13 @@
         </svg>
       </button>
     </div>
-
+<h1 v-if="albums.length" class="text-3xl m-4">Albums</h1> 
     
     <h1 v-if="!albums.length">No Records found</h1>
    
 
     <div v-else-if="albums.length" class="container flex justify-center mx-auto">
-    <h1>Albums</h1> 
+    
         <div class="flex w-3/5 flex-col">
             <div class="w-full">
                 <div class="border-b border-gray-200 shadow">
@@ -46,8 +46,8 @@
                               
                             <tr class="whitespace-nowrap" v-for="album in albums" :key="album.id" :album="album">
 
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900" @click="viewAlbum(album)">
+                                <td class="px-6 py-4 cursor-pointer">
+                                    <div class="underline  text-sm text-gray-900" @click="viewAlbum(album)">
                                         {{ album.name }}
                                     </div>
                                 </td>
@@ -57,7 +57,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                    
-                                    <div class="text-sm text-gray-500">Year</div>
+                                    <div class="text-sm text-gray-500">{{ album.publishedYear }}</div>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                    {{new Date(Date.now()).toLocaleDateString()}}
@@ -136,25 +136,6 @@ export default {
                     this.message = e.response.data.message;
                 });
         },
-        // refreshList() {
-        //   this.retrieveAlbums();
-        //   this.currentTutorial = null;
-        //   this.currentIndex = -1;
-        // },
-        // setActiveTutorial(tutorial, index) {
-        //   this.currentTutorial = tutorial;
-        //   this.currentIndex = tutorial ? index : -1;
-        // },
-        // removeAllTutorials() {
-        //   TutorialDataService.deleteAll()
-        //     .then(response => {
-        //       console.log(response.data);
-        //       this.refreshList();
-        //     })
-        //     .catch(e => {
-        //       this.message = e.response.data.message;
-        //     });
-        // },
 
         search() {
           AlbumsDataService.findByTitle(this.searchtext)

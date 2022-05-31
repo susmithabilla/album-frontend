@@ -9,13 +9,13 @@ class AlbumsDataService {
   create(data, inputfile) {
     let formdata = new FormData();
     formdata.append("file", inputfile);
-    return http.post(`/albums?name=${data.name}&artist=${data.artist}&description=${data.description}`, formdata, {
+    return http.post(`/albums?name=${data.name}&artist=${data.artist}&description=${data.description}&publishedYear=${data.year}`, formdata, {
       headers: { "Content-Type": "multipart/form-data"}
     });
   }
   
-  update(id, data) {
-    return http.put(`/albums/${id}`, data);
+  update(data) {
+    return http.put(`/albums/${data.id}`, data);
   }
 
   delete(id) {

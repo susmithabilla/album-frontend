@@ -48,7 +48,6 @@ export default {
       TutorialDataService.create(data)
         .then(response => {
           this.tutorial.id = response.data.id;
-          console.log("add "+response.data);
           this.$router.push({ name: 'tutorials' });
         })
         .catch(e => {
