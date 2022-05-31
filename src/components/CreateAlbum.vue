@@ -34,7 +34,7 @@
                  <div class="mb-6">
                     <label for="default-input"
                         class="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300">Released Year</label>
-                    <input type="text" id="default-input" v-model="album.year"
+                    <input type="text" id="default-input" v-model="album.publishedYear"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 <div class="mb-6">
@@ -49,7 +49,7 @@
             </form>
 
              <button type="submit"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="text-white mr-6 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
         @click="saveAlbum">Submit</button>
     <button type="submit"
         class="text-white bg-gray-500 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -77,40 +77,21 @@ export default {
     },
     methods: {
         inputfile_(event) {
-            console.log("test imageeeee...");
             this.inputfile = event.target.files[0];
-
-//             const reader = new FileReader()
-
-// let rawImg;
-// reader.onloadend = () => {
-//    rawImg = reader.result;
-//    console.log(rawImg);
-//    this.inputfile = rawImg;
-// }
-// reader.readAsDataURL(this.inputfile);
-
-
-
-      
-      
-//       console.log("test image...", this.album.name);
     },
         saveAlbum() {
             var data = {
                 name: this.album.name,
                 artist: this.album.artist,
-                description: this.album.description
+                description: this.album.description,
+                year: this.album.publishedYear
             };
-
-            console.log("test image...", this.album.name);
 
             //  this.$router.push({ name: 'home' });
        
             AlbumsDataService.create(data,this.inputfile)
                 .then(response => {
                     this.album.id = response.data.id;
-                    console.log("add " + response.data);
                     this.$router.push({ name: 'home' });
                 })
                 .catch(e => {

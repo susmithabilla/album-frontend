@@ -108,7 +108,6 @@ export default {
     removeAllTutorials() {
       TutorialDataService.deleteAll()
         .then(response => {
-          console.log(response.data);
           this.refreshList();
         })
         .catch(e => {
