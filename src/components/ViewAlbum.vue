@@ -20,7 +20,7 @@
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                 Add Tracks
             </button>
-            <div class="rounded-r-xl mr-16">
+            <div v-if="tracks.length" class="rounded-r-xl mr-16">
                 <p class="text-2xl mt-16">Playlist</p>
                  <table class="w-full divide-y divide-gray-300 mr-5 ">
                         <thead class="bg-gray-800 ">
@@ -53,7 +53,7 @@
                                 </td>
                                 <td class="px-6 py-4">
                                    
-                                    <div class="text-sm text-gray-500">{{ track.description }}</div>
+                                    <div class="text-sm text-gray-500"><a :href="track.description" target="_blank" class="text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out underline">{{ track.description }}</a></div>
                                 </td>
                             </tr>
 

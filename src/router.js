@@ -24,6 +24,18 @@ const routes = [
         component: () => import("/src/components/EditAlbum.vue"),
         props: true
     },
+    {
+        path: "/tracks",
+        name: 'track',
+        component: () => import("/src/components/Track.vue"),
+        props: true
+    },
+    {
+        path: "/artists",
+        name: 'artist',
+        component: () => import("/src/components/Artist.vue"),
+        props: true
+    },
    
 ]
 const router = createRouter({
