@@ -48,7 +48,24 @@ const routes = [
         component: () => import("/src/components/Artist.vue"),
         props: true
     },
-   
+    {
+        path: "/createartist",
+        name: 'createartist',
+        component: () => import("/src/components/CreateArtist.vue"),
+        props: true
+    },
+    {
+        path: "/editartist/:id",
+        name: 'editartist',
+        component: () => import("/src/components/EditArtist.vue"),
+        props: true
+    },
+    {
+        path: "/viewartist/:id",
+        name: "viewartist",
+        component: () => import("/src/components/ViewArtist.vue"),
+        props: true
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),
