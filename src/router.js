@@ -31,6 +31,18 @@ const routes = [
         props: true
     },
     {
+        path: '/createtrack',
+        name: 'createtrack',
+        component: () => import("/src/components/CreateTracks.vue"),
+    },
+    
+    {
+        path: "/edit/:id",
+        name: 'edittrack',
+        component: () => import("/src/components/EditTrack.vue"),
+        props: true
+    },
+    {
         path: "/artists",
         name: 'artist',
         component: () => import("/src/components/Artist.vue"),
