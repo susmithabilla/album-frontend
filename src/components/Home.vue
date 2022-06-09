@@ -21,6 +21,9 @@
                     <table class="w-full divide-y divide-gray-300 ">
                         <thead class="bg-gray-800 ">
                             <tr>
+                            <th class="px-6 py-2 text-xs text-white">
+                            S.No
+                            </th>
 
                                 <th class="px-6 py-2 text-xs text-white">
                                     Name
@@ -45,6 +48,8 @@
                         <tbody class="bg-white divide-y divide-gray-300">
                               
                             <tr class="whitespace-nowrap" v-for="album in albums" :key="album.id" :album="album">
+                            <td>
+                            </td>
 
                                 <td class="px-6 py-4 cursor-pointer">
                                     <div class="underline  text-sm text-gray-900" @click="viewAlbum(album)">
@@ -162,5 +167,17 @@ export default {
 .searchform{
     margin-left: 30%;
     margin-right: 30%;
+}
+
+
+table {   
+counter-reset: rowNumber-1;
+}
+table tr {
+ counter-increment: rowNumber;
+}
+table tr td:first-child::before {   
+content: counter(rowNumber);   
+
 }
 </style>

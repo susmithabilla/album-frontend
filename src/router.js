@@ -31,12 +31,41 @@ const routes = [
         props: true
     },
     {
+        path: '/createtrack',
+        name: 'createtrack',
+        component: () => import("/src/components/CreateTracks.vue"),
+    },
+    
+    {
+        path: "/edit/:id",
+        name: 'edittrack',
+        component: () => import("/src/components/EditTrack.vue"),
+        props: true
+    },
+    {
         path: "/artists",
         name: 'artist',
         component: () => import("/src/components/Artist.vue"),
         props: true
     },
-   
+    {
+        path: "/createartist",
+        name: 'createartist',
+        component: () => import("/src/components/CreateArtist.vue"),
+        props: true
+    },
+    {
+        path: "/editartist/:id",
+        name: 'editartist',
+        component: () => import("/src/components/EditArtist.vue"),
+        props: true
+    },
+    {
+        path: "/viewartist/:id",
+        name: "viewartist",
+        component: () => import("/src/components/ViewArtist.vue"),
+        props: true
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),
