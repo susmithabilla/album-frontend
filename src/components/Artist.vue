@@ -118,7 +118,7 @@ export default {
           ArtistDataService.delete(artist.id)
             .then( () => {
 
-              this.retrieveartists()
+              this.getAllArtists()
             })
             .catch(e => {
               this.message = e.response.data.message;

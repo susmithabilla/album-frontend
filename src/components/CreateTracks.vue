@@ -26,6 +26,15 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                  <div class="mb-6">
+<label for="countries" class="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-gray-400">Select an album</label>
+<select v-on:change="onChange($event)" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option selected></option>
+ 
+  <option :value="album.id" v-for="album in albums" :key="album.id" :album="album">{{album.name}}</option>
+</select>
+                 </div>
+                
+                 <div class="mb-6">
                     <label for="default-input"
                         class="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300">Track URL</label>
                     <input type="text" id="default-input" v-model="track.url"
@@ -48,6 +57,8 @@
 
 <script>
 import TrackDataService from "../services/TrackDataService";
+import AlbumsDataService from "../services/AlbumsDataService";
+
 export default {
     // name: "add-track",
     data() {
@@ -58,10 +69,26 @@ export default {
                 url: "",
                 albumid: ""
             },
+            albums: [],
             message: "Enter data and click save",
         };
     },
     methods: {
+        onChange(e){
+            console.log("eeeeeee",e.target.value);
+            this.track.albumid = e.target.value;
+
+        },
+        getAlbums() {
+            AlbumsDataService.getAll()
+                .then(response => {
+                    this.albums = response.data;
+
+                })
+                .catch(e => {
+                    this.message = e.response.data.message;
+                });
+        },
         saveTrack() {
             var data = {
                 title : this.track.title,
@@ -71,7 +98,7 @@ export default {
 
             //  this.$router.push({ name: 'home' });
 
-            var albumid=5;
+            var albumid=this.track.albumid;
        
             TrackDataService.createTrack(albumid, data)
                 .then(response => {
@@ -87,6 +114,9 @@ export default {
         cancel() {
             this.$router.push({ name: 'home' });
         }
+    },
+     mounted() {
+        this.getAlbums();
     }
 }
 
