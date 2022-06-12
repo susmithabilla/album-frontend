@@ -43,8 +43,8 @@
                              <td>
                             </td>
 
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">
+                                <td class="px-6 py-4 cursor-pointer">
+                                    <div class="underline text-sm text-gray-900" @click="viewAlbum(album)">
                                         {{ album.name }}
                                     </div>
                                 </td>
@@ -117,6 +117,10 @@ export default {
         },
         addArtist() {
             this.$router.push({ name: 'createartist' });
+        },
+         viewAlbum(album) {
+           
+          this.$router.push({ name: 'viewalbum', params: { id: album.id } });
         },
     },
      mounted() {

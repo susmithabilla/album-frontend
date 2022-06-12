@@ -96,13 +96,16 @@
 
 
     <AddTracks :show="showModal" @close="getAlbum()" :id='album.id'> </AddTracks>
+    <EditTrack :show1="showModal1" :id="trackId"  @close="getAlbum()"  ></EditTrack>
 
 
 </template>
 
 
 <script>
-import AddTracks from "./AddTracksPopup.vue"
+import AddTracks from "./AddTracksPopup.vue";
+import EditTrack from "./EditTracksPopup.vue";
+
 import { Buffer } from 'buffer';
 import AlbumsDataService from "../services/AlbumsDataService";
 import TrackDataService from "../services/TrackDataService";
@@ -111,20 +114,24 @@ export default {
     name: "view-albums",
     props: ['id'],
     components: {
-        AddTracks
+        AddTracks,
+        EditTrack
     },
 
     data() {
         return {
             showModal: false,
+            showModal1:false,
             album: {},
             tracks: [],
+             trackId:"",
         }
     },
     methods: {
         getAlbum() {
             this.showModal = false;
-
+            this.showModal1 = false;
+          this.trackId="";
             AlbumsDataService.get(this.id)
                 .then(response => {
 
@@ -154,8 +161,10 @@ export default {
             this.$router.push({ name: 'editalbum', params: { id: album.id } });
         },
          editTrack(tid) {
-            this.showModal = true;
-            this.$emit("show",this.tracks);
+             console.log(tid);
+             this.trackId=tid;
+            this.showModal1 = true;
+            this.$emit("show1","id");
         },
 
        

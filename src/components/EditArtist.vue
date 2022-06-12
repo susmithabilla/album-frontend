@@ -85,7 +85,7 @@ export default {
         },
         saveartist() {
             var data = {
-                id:this.artist.id,
+                id:this.id,
                 name: this.artist.name,
                 description: this.artist.description
             };

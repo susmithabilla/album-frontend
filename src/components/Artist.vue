@@ -47,7 +47,7 @@
 <td>
                             </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">
+                                    <div class="underline text-sm text-gray-900" @click="viewArtist(artist)">
                                         {{ artist.name }}
                                     </div>
                                 </td>

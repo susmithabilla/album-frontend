@@ -104,26 +104,31 @@
 
 
     </div>
+
+        <EditTrack :show1="showModal1" :id="trackId"  @close="getAllTracks()"  ></EditTrack>
+
 </template>
 
 <script>
 import TrackDataService from "../services/TrackDataService";
+import EditTrack from "./EditTracksPopup.vue";
 
 export default {
     name: "tracks-list",
     data() {
         return {
-            showModal: false,
+            showModal1: false,
             tracks: [],
             currentAlbum: null,
             currentIndex: -1,
             title: "",
             searchtext: "",
+            trackId:"",
             message: "Search, Edit or Delete tracks"
         };
     },
     components: {
-
+      EditTrack
     },
     methods: {
         addTracks() {
@@ -150,7 +155,7 @@ export default {
                 });
         },
         getAllTracks() {
-            this.showModal = false;
+            this.showModal1 = false;
             TrackDataService.getTracks()
                 .then(response => {
                     this.tracks = response.data;
@@ -173,6 +178,12 @@ export default {
                 .catch(e => {
                     this.message = e.response.data.message;
                 });
+        },
+    
+     editTrack(track) {
+             this.trackId=track.id;
+            this.showModal1 = true;
+            this.$emit("show1","id");
         }
     },
     mounted() {
