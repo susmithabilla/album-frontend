@@ -31,6 +31,9 @@
                                 <th class="px-6 py-2 text-xs text-white">
                                     Name
                                 </th>
+                                 <th class="px-6 py-2 text-xs text-white">
+                                    Created_at
+                                </th>
                                
                                 <th class="px-6 py-2 text-xs text-white">
                                     Edit
@@ -50,6 +53,9 @@
                                     <div class="underline text-sm text-gray-900" @click="viewArtist(artist)">
                                         {{ artist.name }}
                                     </div>
+                                </td>
+                                 <td class="px-6 py-4 text-sm text-gray-500">
+                                   {{new Date(Date.now()).toLocaleDateString()}}
                                 </td>
                                
                                

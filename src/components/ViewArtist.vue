@@ -4,8 +4,9 @@
             <img :src="artist.URL" class="mb-16 max-w-sm h-auto"
                 alt="">
             <div>
-                <p class="mb-4 text-left ...">Name : {{artist.name}}</p>
-                <p class="mb-4 text-left ...">Description : {{artist.description}}</p>
+                <p class="mb-4 text-left text-white text-3xl ...">{{artist.name}}</p>
+                <p class="mb-4 text-left text-white ...">Details :  </p>
+                <p class="mb-4 text-left text-white ...">{{artist.description}}</p>
             </div>
         </div>
 
@@ -14,9 +15,9 @@
                 class="bg-gray-500 mr-6 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
                 Edit Artist
             </button>
-            <button @click="addArtist()"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                Add Artist
+            <button @click="deleteArtist(artist)"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
+                Delete Artist
             </button>
             <div v-if="albums.length" class="rounded-r-xl mr-16">
                 <p class="text-2xl mt-16">Albums</p>
@@ -112,8 +113,18 @@ export default {
                     this.message = e.response.data.message;
                 });
         },
-        editArtist(tid) {
+        editArtist(artist) {
             this.$router.push({ name: 'editartist', params: { id: artist.id } });
+        },
+         deleteArtist(artist) {
+          ArtistDataService.delete(artist.id)
+            .then( () => {
+
+              this.$router.push({ name: 'artist' });
+            })
+            .catch(e => {
+              this.message = e.response.data.message;
+            });
         },
         addArtist() {
             this.$router.push({ name: 'createartist' });

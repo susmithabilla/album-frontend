@@ -102,7 +102,7 @@
   </nav>
   <!-- content goes here -->
 
-  <div class="py-32 pageContent h-screen p-3"><router-view /></div>
+  <div class="py-32 pageContent p-3"><router-view /></div>
 </template>
 
 <script>

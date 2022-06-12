@@ -169,9 +169,11 @@ export default {
         },
 
         search() {
+            
             TrackDataService.findByTitle(this.searchtext)
                 .then(response => {
                     this.tracks = response.data;
+                    console.log("Track searchhhh",this.tracks);
                     //   this.setActiveTutorial(null);
 
                 })
@@ -181,7 +183,7 @@ export default {
         },
     
      editTrack(track) {
-             this.trackId=track.id;
+            this.trackId=track.id;
             this.showModal1 = true;
             this.$emit("show1","id");
         }

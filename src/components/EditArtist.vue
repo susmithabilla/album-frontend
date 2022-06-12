@@ -65,16 +65,17 @@ export default {
         retrieveArtist(){
             ArtistDataService.get(this.id)
         .then(response => {
-          var a = new Array(response.data);
-          let result = a[0];
-          if (result.data != null) {
-            var blob = result.data;
-            var buffbase64 = new Buffer(blob.data, 'binary').toString('base64');
-            var imgBase64 = "data:image/jpeg;base64," + buffbase64;
-            a[0]["URL"] = imgBase64;
-          }
-          this.artist = a[0];
-          this.preImg=this.artist.URL;
+        //   var a = new Array(response.data);
+        //   let result = a[0];
+        //   if (result.data != null) {
+        //     var blob = result.data;
+        //     var buffbase64 = new Buffer(blob.data, 'binary').toString('base64');
+        //     var imgBase64 = "data:image/jpeg;base64," + buffbase64;
+        //     a[0]["URL"] = imgBase64;
+        //   }
+           this.artist = response.data;
+          console.log("aaaaaaaa",response.data);
+        //   this.preImg=this.artist.URL;
 
        
         })

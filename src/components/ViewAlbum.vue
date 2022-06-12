@@ -4,10 +4,11 @@
             <img :src="album.URL" class="mb-16 max-w-sm h-auto"
                 alt="">
             <div>
-                <p class="mb-4 text-left ...">Name : {{album.name}}</p>
-                <p class="mb-4 text-left ...">Artist : {{album.artist}}</p>
-                <p class="mb-4 text-left ...">Published Year : {{ album.publishedYear }}</p>
-                <p class="mb-4 text-left ...">Description : {{album.description}}</p>
+                <p class="mb-4 text-left text-white text-4xl ...">{{album.name}}</p>
+                <p class="mb-4 text-left text-white ...">Artist : {{album.artist}}</p>
+                <p class="mb-4 text-left text-white ...">Published Year : {{ album.publishedYear }}</p>
+                <p class="mb-4 text-left text-white ...">Summary : </p>
+                <p class="mb-4 text-left text-white ...">{{album.description}}</p>
             </div>
         </div>
 
@@ -157,7 +158,7 @@ export default {
                     this.message = e.response.data.message;
                 });
         },
-        editAlbum(tid) {
+        editAlbum(album) {
             this.$router.push({ name: 'editalbum', params: { id: album.id } });
         },
          editTrack(tid) {

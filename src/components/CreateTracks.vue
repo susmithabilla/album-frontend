@@ -112,7 +112,7 @@ export default {
                 });
         },
         cancel() {
-            this.$router.push({ name: 'home' });
+            this.$router.push({ name: 'track' });
         }
     },
      mounted() {
