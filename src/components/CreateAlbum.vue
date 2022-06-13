@@ -32,6 +32,14 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                  <div class="mb-6">
+<label for="artists" class="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-gray-400">Select artist</label>
+<select v-on:change="onChange($event)" id="artists" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option selected></option>
+ 
+  <option :value="artist.id" v-for="artist in artists" :key="artist.id" :artist="artist">{{artist.name}}</option>
+</select>
+                 </div>
+                 <div class="mb-6">
                     <label for="default-input"
                         class="block mb-2 text-left text-sm font-medium text-gray-900 dark:text-gray-300">Released Year</label>
                     <input type="text" id="default-input" v-model="album.publishedYear"
@@ -61,6 +69,8 @@
 
 <script>
 import AlbumsDataService from "../services/AlbumsDataService";
+import ArtistDataService from "../services/ArtistDataService";
+
 export default {
     // name: "add-album",
     data() {
@@ -73,12 +83,25 @@ export default {
             },
             message: "Enter data and click save",
             inputfile: null,
-        };
+            artists:[]
+        }
     },
     methods: {
         inputfile_(event) {
             this.inputfile = event.target.files[0];
     },
+     getArtists() {
+             ArtistDataService.getAll()
+                .then(response => {
+                    this.artists = response.data;
+
+                    console.log("Artists:::",this.artists)
+
+                })
+                .catch(e => {
+                    this.message = e.response.data.message;
+                });
+        },
         saveAlbum() {
             var data = {
                 name: this.album.name,
@@ -103,6 +126,9 @@ export default {
         cancel() {
             this.$router.push({ name: 'home' });
         }
+    },
+    mounted() {
+        this.getArtists();
     }
 }
 

@@ -115,6 +115,7 @@ export default {
     },
     methods: {
         editAlbum(album) {
+            console.log("editttt")
           this.$router.push({ name: 'editalbum', params: { id: album.id } });
         },
         viewAlbum(album) {
