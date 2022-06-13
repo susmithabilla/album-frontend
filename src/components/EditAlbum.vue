@@ -28,7 +28,8 @@
                   <div class="mb-6">
 <label for="artists" class="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-gray-400">Select artist</label>
 <select v-on:change="onChange($event)" id="artists" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  <option selected>{{album.artist}}</option>
+  <option v-if="album.artistId" selected>{{album.artist}}</option>
+  <option v-else selected></option>
  
   <option :value="artist.id" v-for="artist in artists" :key="artist.id" :artist="artist">{{artist.name}}</option>
 </select>

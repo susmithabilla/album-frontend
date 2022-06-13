@@ -58,7 +58,8 @@
                                 </td>
                                 <td class="px-6 py-4">
                                    
-                                    <div class="text-sm text-gray-500">{{ album.artist }}</div>
+                                    <div v-if="album.artistId" class="text-sm text-gray-500">{{ album.artist }}</div>
+                                    <div v-else class="text-sm text-gray-500"></div>
                                 </td>
                                 <td class="px-6 py-4">
                                    

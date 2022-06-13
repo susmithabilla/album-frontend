@@ -80,7 +80,8 @@
                                             track.description
                                     }}</a></div>
                         </td>
-                        <td class="px-6 py-4">{{ track.albumName }}</td>
+                        <td v-if="track.albumId" class="px-6 py-4">{{ track.albumName }}</td>
+                        <td v-else class="px-6 py-4"></td>
                         <td class="px-6 py-4 cursor-pointer" @click="editTrack(track)">
                            
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
