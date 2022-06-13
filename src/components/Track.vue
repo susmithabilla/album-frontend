@@ -16,10 +16,14 @@
         </button>
     </div>
 
-    <button @click="addTracks()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+<div class="inline-flex items-center">
+
+    <h1 v-if="tracks.length" class="text-3xl m-4 text-white">Tracks</h1>
+    <button @click="addTracks()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-24  h-fit">
         Add Tracks
     </button>
-    <h1 v-if="tracks.length" class="text-3xl m-4">tracks</h1>
+</div>
+    
 
     <h1 v-if="!tracks.length">No Tracks Found</h1>
 

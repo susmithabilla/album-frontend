@@ -8,7 +8,7 @@
         </svg>
       </button>
     </div>
-<h1 v-if="albums.length" class="text-3xl m-4">Albums</h1> 
+<h1 v-if="albums.length" class="text-3xl text-white m-4">Albums</h1> 
     
     <h1 v-if="!albums.length">No Records found</h1>
    

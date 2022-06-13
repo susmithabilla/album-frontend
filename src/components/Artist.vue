@@ -9,11 +9,17 @@
       </button>
     </div>
 
-     <button @click="addArtists()"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+    <div class="inline-flex items-center">
+      
+<h1 v-if="artists.length" class="text-3xl m-4 text-white">Artists</h1> 
+ <button @click="addArtists()"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-fit ml-24 rounded-full">
                 Add Artist
             </button>
-<h1 v-if="artists.length" class="text-3xl m-4">Artists</h1> 
+      </div>
+
+
+    
     
     <h1 v-if="!artists.length">No Artists Found</h1>
    
