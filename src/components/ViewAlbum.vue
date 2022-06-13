@@ -96,7 +96,7 @@
     </div>
 
 
-    <AddTracks :show="showModal" @close="getAlbum()" :id='album.id'> </AddTracks>
+    <AddTracks :show="showModal" @close="getAlbum()" :id='album.id' :albumName='album.name'> </AddTracks>
     <EditTrack :show1="showModal1" :id="trackId" :trackdata ="trackdata" @close="getAlbum()"  ></EditTrack>
 
 
@@ -167,7 +167,7 @@ export default {
              this.trackdata=track;
              console.log(this.trackdata);
             this.showModal1 = true;
-            this.$emit("show1","id");
+            this.$emit("show1","id","albumName");
         },
 
        

@@ -19,7 +19,7 @@ const routes = [
         props: true
     },
     {
-        path: "/:aid/edittrack/:id",
+        path: "/edit/:id",
         name: 'editalbum',
         component: () => import("/src/components/EditAlbum.vue"),
         props: true
@@ -37,7 +37,7 @@ const routes = [
     },
     
     {
-        path: "/edit/:id",
+        path: "/:aid/edittrack/:id",
         name: 'edittrack',
         component: () => import("/src/components/EditTrack.vue"),
         props: true
