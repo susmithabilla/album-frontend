@@ -67,7 +67,7 @@
                                    
                                     <div class="text-sm text-gray-500"><a :href="track.description" target="_blank" class="text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out underline">{{ track.description }}</a></div>
                                 </td>
-                                 <td class="px-6 py-4" @click="editTrack(track.id)">
+                                 <td class="px-6 py-4" @click="editTrack(track)">
                                     <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,7 +97,7 @@
 
 
     <AddTracks :show="showModal" @close="getAlbum()" :id='album.id'> </AddTracks>
-    <EditTrack :show1="showModal1" :id="trackId"  @close="getAlbum()"  ></EditTrack>
+    <EditTrack :show1="showModal1" :id="trackId" :trackdata ="trackdata" @close="getAlbum()"  ></EditTrack>
 
 
 </template>
@@ -126,6 +126,7 @@ export default {
             album: {},
             tracks: [],
              trackId:"",
+             trackdata:{}
         }
     },
     methods: {
@@ -161,9 +162,10 @@ export default {
         editAlbum(album) {
             this.$router.push({ name: 'editalbum', params: { id: album.id } });
         },
-         editTrack(tid) {
-             console.log(tid);
-             this.trackId=tid;
+         editTrack(track) {
+             
+             this.trackdata=track;
+             console.log(this.trackdata);
             this.showModal1 = true;
             this.$emit("show1","id");
         },

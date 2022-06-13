@@ -67,7 +67,8 @@ export default {
                 title: null,
                 duration: "",
                 url: "",
-                albumid: ""
+                albumid: "",
+                albumName: ""
             },
             albums: [],
             message: "Enter data and click save",
@@ -75,7 +76,9 @@ export default {
     },
     methods: {
         onChange(e){
-            console.log("eeeeeee",e.target.value);
+            console.log("eeeeeee",e.target.name);
+            console.log("nameee",e.target.options[e.target.options.selectedIndex].text)
+            this.track.albumName = e.target.options[e.target.options.selectedIndex].text;
             this.track.albumid = e.target.value;
 
         },
@@ -93,7 +96,8 @@ export default {
             var data = {
                 title : this.track.title,
                  duration: this.track.duration,
-                description: this.track.url
+                description: this.track.url,
+                albumName: this.track.albumName
             };
 
             //  this.$router.push({ name: 'home' });

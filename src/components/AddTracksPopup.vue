@@ -59,7 +59,7 @@
 import TrackDataService from "../services/TrackDataService";
 
     export default {
-        name: "StudentsRegistration",
+        name: "addTracks-popup",
 
         props: {
             show: Boolean,

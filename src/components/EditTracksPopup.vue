@@ -4,7 +4,7 @@
 
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
 
-           
+
             <div class="modal-content py-4 text-left px-6">
 
                 <div class="flex justify-center items-center pb-3">
@@ -12,85 +12,73 @@
                 </div>
 
                 <form class="mt-6">
-                <!-- <p>Canfirm the deletion of this item</p> -->
+                    <!-- <p>Canfirm the deletion of this item</p> -->
                     <div>
-                        <label for="username" class="block text-sm text-gray-800 dark:text-gray-200">Tracks Title</label>
-                        <input type="text" v-model="title" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                        <label for="username" class="block text-sm text-gray-800 dark:text-gray-200">Tracks
+                            Title</label>
+                        <input type="text" v-model="trackdata.title"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
                     <div>
                         <label for="duration" class="block text-sm text-gray-800 dark:text-gray-200"> Duration</label>
-                        <input type="text" v-model="duration" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                        <input type="text" v-model="trackdata.duration"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
-
- <div class="mb-6">
-<label for="countries" class="block mb-2 text-sm text-left font-medium text-gray-900 dark:text-gray-400">Select an album</label>
-<select v-on:change="onChange($event)" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-  
- 
-  <option :value="album.id" v-for="album in albums" :key="album.id" :album="album" >{{album.name}}</option>
-  <option ></option>
-</select>
-                 </div>
 
                     <div class="mt-4">
                         <div class="flex items-center justify-between">
-                            <label for="password" class="block text-sm text-gray-800 dark:text-gray-200">Track URL</label>
+                            <label for="password" class="block text-sm text-gray-800 dark:text-gray-200">Track
+                                URL</label>
                         </div>
 
-                        <input type="text" v-model="url" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                    </div>              
-                   
-
-                  
-
-
+                        <input type="text" v-model="trackdata.description"
+                            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
                 </form>
 
-                  <div class="mt-6">
-                        <button type="submit"   class="px-6 py-2 mr-4 font-medium text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
-                        
-                        <span class="m-2  text-white" @click="edittracks">Edit Track</span>
+                <div class="mt-6">
+                    <button type="submit"
+                        class="px-6 py-2 mr-4 font-medium text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
+
+                        <span class="m-2  text-white" @click="edittracks">Save</span>
                     </button>
-                    <button
-              @click="close_modal()"
-              class="px-6 py-2 mr-4 font-medium text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-gray-400 focus:bg-gray-400 focus:outline-none"
-            >
-              Cancel
-            </button>
-                    </div>
-            
+                    <button @click="close_modal()"
+                        class="px-6 py-2 mr-4 font-medium text-white transition-colors duration-200 transform bg-gray-500 rounded-md hover:bg-gray-400 focus:bg-gray-400 focus:outline-none">
+                        Cancel
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
-    
+
 </template>
 
 <script>
 import TrackDataService from "../services/TrackDataService";
 import AlbumsDataService from "../services/AlbumsDataService";
 
-    export default {
-        name: "StudentsRegistration",
+export default {
+    name: "StudentsRegistration",
 
-        props: {
-            show1: Boolean,
-            id: "",
-            existingAlbumId:""
+    props: {
+        show1: Boolean,
+        id: "",
+        trackdata: Object
+    },
+    data() {
+        return {
+            title: "",
+            url: "",
+            duration: "",
+            albumid: "",
+            albums: [],
+        }
+    },
 
-        },
-        data() {
-            return{
-                 title: "",
-                 url: "",
-                 duration: "",
-                  albumid: "",
-                 albums: [],
-            }
-        },
-
-        methods:{
-              onChange(e){
-            console.log("eeeeeee",e.target.value);
+    methods: {
+        onChange(e) {
+            console.log("eeeeeee", e.target.value);
             this.albumid = e.target.value;
 
         },
@@ -104,34 +92,37 @@ import AlbumsDataService from "../services/AlbumsDataService";
                     this.message = e.response.data.message;
                 });
         },
-            close_modal() {
-               
-                this.$emit("close")
-            },
-            edittracks()
-        {
+        close_modal() {
+
+            this.$emit("close")
+        },
+        edittracks() {
             var data = {
-                title : this.title,
-                 duration: this.duration,
-                description: this.url
+                title: this.trackdata.title,
+                duration: this.trackdata.duration,
+                description: this.trackdata.description
             }
-            TrackDataService.updateTrack(this.albumid,this.id, data)
-            .then(response => {
-            //  this.tracks = response.data;
-             // this.title="";
-            //  this.url="";
-              this.$emit("close")
-              
-              
-            })
-            .catch(e => {
-              this.message = e.response.data.message;
-            });
+
+             console.log("dddd1111",this.trackdata);
+
+            console.log("dddd",data);
+            TrackDataService.updateTrack(this.trackdata.albumid, this.trackdata.id, data)
+                .then(response => {
+                    //  this.tracks = response.data;
+                    // this.title="";
+                    //  this.url="";
+                    this.$emit("close")
+
+
+                })
+                .catch(e => {
+                    this.message = e.response.data.message;
+                });
         }
 
-        },
-         mounted() {
+    },
+    mounted() {
         this.getAlbums();
     }
-    }
+}
 </script>

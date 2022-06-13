@@ -76,7 +76,7 @@
                                             track.description
                                     }}</a></div>
                         </td>
-                        <td class="px-6 py-4"></td>
+                        <td class="px-6 py-4">{{ track.albumName }}</td>
                         <td class="px-6 py-4" @click="editTrack(track)">
                             <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-400" fill="none"
@@ -86,7 +86,7 @@
                                 </svg>
                             </a>
                         </td>
-                        <td class="px-6 py-4"  @click="deleteTrack(track)">
+                        <td class="px-6 py-4" @click="deleteTrack(track)">
                             <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -105,13 +105,14 @@
 
     </div>
 
-        <EditTrack :show1="showModal1" :id="trackId"  @close="getAllTracks()"  ></EditTrack>
+    <!-- <EditTrack :show1="showModal1" :id="trackId"  @close="getAllTracks()"  ></EditTrack> -->
 
 </template>
 
 <script>
 import TrackDataService from "../services/TrackDataService";
-import EditTrack from "./EditTracksPopup.vue";
+// import AlbumsDataService from "../services/AlbumsDataService";
+// import EditTrack from "./EditTracksPopup.vue";
 
 export default {
     name: "tracks-list",
@@ -123,12 +124,12 @@ export default {
             currentIndex: -1,
             title: "",
             searchtext: "",
-            trackId:"",
+            trackId: "",
             message: "Search, Edit or Delete tracks"
         };
     },
     components: {
-      EditTrack
+        //   EditTrack
     },
     methods: {
         addTracks() {
@@ -144,7 +145,7 @@ export default {
             this.$router.push({ name: 'viewalbum', params: { id: album.id } });
         },
         deleteTrack(track) {
-            TrackDataService.deleteTrack(track.albumId,track.id)
+            TrackDataService.deleteTrack(track.albumId, track.id)
                 .then(() => {
 
 
@@ -159,21 +160,19 @@ export default {
             TrackDataService.getTracks()
                 .then(response => {
                     this.tracks = response.data;
-
-                    console.log("Tracks:::", this.tracks)
+                    console.log("Tracks1233:::", this.tracks)
 
                 })
                 .catch(e => {
                     this.message = e.response.data.message;
                 });
         },
-
         search() {
-            
+
             TrackDataService.findByTitle(this.searchtext)
                 .then(response => {
                     this.tracks = response.data;
-                    console.log("Track searchhhh",this.tracks);
+                    console.log("Track searchhhh", this.tracks);
                     //   this.setActiveTutorial(null);
 
                 })
@@ -181,11 +180,13 @@ export default {
                     this.message = e.response.data.message;
                 });
         },
-    
-     editTrack(track) {
-            this.trackId=track.id;
-            this.showModal1 = true;
-            this.$emit("show1","id");
+
+        editTrack(track) {
+            // this.trackId=track.id;
+            // this.showModal1 = true;
+            // this.$emit("show1","id");
+
+            this.$router.push({ name: 'edittrack', params: { aid: track.albumId, id: track.id } });
         }
     },
     mounted() {
