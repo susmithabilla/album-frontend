@@ -69,7 +69,9 @@ export default {
                 id: null,
                 name: "",
                 description: "",
-                published: false
+                published: false,
+                artist:"",
+                publishedYear:"",
             },
             message: "Enter data and click save",
             inputfile: null,

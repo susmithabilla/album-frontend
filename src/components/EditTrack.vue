@@ -74,7 +74,8 @@ export default {
                 duration: "",
                 description:"",
                 url: "",
-                albumId: ""
+                albumId: "",
+                albumName:""
             },
             albums: [],
             message: "Enter data and click save",
@@ -84,13 +85,12 @@ export default {
         onChange(e) {
             console.log("eeeeeee", e.target.value);
             this.track.albumId = e.target.value;
-
+             this.track.albumName= e.target.options[e.target.selectedIndex].text;
         },
         getAlbums() {
             AlbumsDataService.getAll()
                 .then(response => {
                     this.albums = response.data;
-
                 })
                 .catch(e => {
                     this.message = e.response.data.message;
@@ -106,16 +106,17 @@ export default {
                 });
         },
         saveTrack() {
+             var albumId = this.track.albumId;
             var data = {
                 title: this.track.title,
                 duration: this.track.duration,
                 description: this.track.url,
-                albumName: this.track.albumName
+                albumName: this.track.albumName,
+                albumId: this.track.albumId
+
             };
 
             //  this.$router.push({ name: 'home' });
-
-            var albumId = this.track.albumId;
 
             TrackDataService.updateTrack(albumId,this.id, data) 
                 .then(response => {
