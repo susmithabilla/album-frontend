@@ -37,7 +37,7 @@ const routes = [
     },
     
     {
-        path: "/edit/:id",
+        path: "/:aid/edittrack/:id",
         name: 'edittrack',
         component: () => import("/src/components/EditTrack.vue"),
         props: true

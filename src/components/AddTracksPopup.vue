@@ -59,17 +59,18 @@
 import TrackDataService from "../services/TrackDataService";
 
     export default {
-        name: "StudentsRegistration",
+        name: "addTracks-popup",
 
         props: {
             show: Boolean,
-            id: ""
+            id: "",
+            albumName:"",
         },
         data() {
             return{
                  title: "",
                  url: "",
-                 duration: ""
+                 duration: "",
             }
         },
 
@@ -82,7 +83,8 @@ import TrackDataService from "../services/TrackDataService";
             var data = {
                 title : this.title,
                  duration: this.duration,
-                description: this.url
+                description: this.url,
+                albumName:this.albumName,
             }
             TrackDataService.createTrack(this.id, data)
             .then(response => {

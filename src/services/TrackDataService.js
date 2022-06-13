@@ -18,6 +18,9 @@ class TrackDataService {
   deleteTrack(aid,tid) {
     return http.delete(`/albums/${aid}/tracks/${tid}`);
   }
+  findByTitle(title) {
+    return http.get(`/albums/0/allTracks?title=${title}`);
+  }
 
 }
 export default new TrackDataService();
