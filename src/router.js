@@ -24,10 +24,52 @@ const routes = [
         component: () => import("/src/components/EditAlbum.vue"),
         props: true
     },
-   
+    {
+        path: "/tracks",
+        name: 'track',
+        component: () => import("/src/components/Track.vue"),
+        props: true
+    },
+    {
+        path: '/createtrack',
+        name: 'createtrack',
+        component: () => import("/src/components/CreateTracks.vue"),
+    },
+    
+    {
+        path: "/:aid/edittrack/:id",
+        name: 'edittrack',
+        component: () => import("/src/components/EditTrack.vue"),
+        props: true
+    },
+    {
+        path: "/artists",
+        name: 'artist',
+        component: () => import("/src/components/Artist.vue"),
+        props: true
+    },
+    {
+        path: "/createartist",
+        name: 'createartist',
+        component: () => import("/src/components/CreateArtist.vue"),
+        props: true
+    },
+    {
+        path: "/editartist/:id",
+        name: 'editartist',
+        component: () => import("/src/components/EditArtist.vue"),
+        props: true
+    },
+    {
+        path: "/viewartist/:id",
+        name: "viewartist",
+        component: () => import("/src/components/ViewArtist.vue"),
+        props: true
+    }
 ]
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
+    // history: createWebHistory(),
     routes,
 })
 export default router

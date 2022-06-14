@@ -3,6 +3,9 @@ class TrackDataService {
   getAllTracks(id) {
     return http.get(`/albums/${id}/tracks`);
   }
+  getTracks(){
+    return http.get(`/albums/0/allTracks`);
+  }
   getTrack(aid,tid) {
     return http.get(`/albums/${aid}/tracks/${tid}`);
   }
@@ -14,6 +17,9 @@ class TrackDataService {
   }
   deleteTrack(aid,tid) {
     return http.delete(`/albums/${aid}/tracks/${tid}`);
+  }
+  findByTitle(title) {
+    return http.get(`/albums/0/allTracks?title=${title}`);
   }
 
 }

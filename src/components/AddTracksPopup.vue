@@ -1,5 +1,4 @@
 <template>
-
     <div v-if="show" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div @click.self="close_modal()" class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
@@ -60,17 +59,18 @@
 import TrackDataService from "../services/TrackDataService";
 
     export default {
-        name: "StudentsRegistration",
+        name: "addTracks-popup",
 
         props: {
             show: Boolean,
-            id: ""
+            id: "",
+            albumName:"",
         },
         data() {
             return{
                  title: "",
                  url: "",
-                 duration: ""
+                 duration: "",
             }
         },
 
@@ -83,7 +83,8 @@ import TrackDataService from "../services/TrackDataService";
             var data = {
                 title : this.title,
                  duration: this.duration,
-                description: this.url
+                description: this.url,
+                albumName:this.albumName,
             }
             TrackDataService.createTrack(this.id, data)
             .then(response => {

@@ -1,59 +1,135 @@
 <template>
-<nav class="flex items-center justify-between flex-wrap bg-teal-500 p-2">
-   <router-link to="/" class="navbar-brand">
+  <!-- navbar goes here -->
+  <nav class="bg-teal-500 fixed inset-x-0">
+   
+    <div class="mx-auto px-4">
+      
+      <div class="flex">
+         <router-link to="/" class="navbar-brand inline-flex">
 <img :src="logo" width="100" height="80" />
     
-    </router-link>
+   
   <div class="flex items-center flex-shrink-0 text-white mr-6">
     
     <span class="appName font-semibold tracking-tight">Music Album Management</span>
   </div>
-   <!-- </router-link> -->
-  <div class="block lg:hidden">
-    <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-    </button>
-  </div>
-  <div class="w-full block flex-grow ml-26 lg:items-center lg:w-auto ml-3/5">
-    
-     <button class="addBtn bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 border border-green-700 rounded " @click="createalbum">
-     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 plus" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-</svg>
-  Add Album
-</button>
-  </div>
+   </router-link>
+        <div class="flex">
+         
+          <div class="hidden ml-10 md:flex items-center space-x-1">
+            <router-link to="/" class="navbar-brand">
+              <p
+                class="
+                  py-5
+                  px-3
+                  cursor-pointer
+                  text-white
+                  hover:text-gray-300
+                "
+              >
+                Home
+              </p>
+            </router-link>
+            <router-link to="/" class="navbar-brand">
+            <p
+              class="py-5 px-3 cursor-pointer text-white hover:text-gray-300"
+            >
+              Albums
+            </p>
+            </router-link>
+            <p
+              class="py-5 px-3 cursor-pointer text-white hover:text-gray-300" @click="showtracks"
+            >
+              Tracks
+            </p>
+            <p
+              class="py-5 px-3 cursor-pointer text-white hover:text-gray-300" @click="showartists"
+            >
+              Artists
+            </p>
+          </div>
+        </div>
+        <!-- secondary nav -->
+        <div class="hidden md:flex items-center space-x-1 mx-auto">
+          <p
+            @click="createalbum"
+            class="
+              py-2
+              px-3
+              cursor-pointer
+              bg-green-600
+              text-white
+              hover:bg-green-700
+              text-sm
+              hover:text-white-800
+              rounded
+              transition
+              duration-300
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 plus"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              /></svg
+            >Add Album
+          </p>
+        </div>
 
-  
-</nav>
+        <!-- mobile button goes here -->
+        <div class="md:hidden flex items-center">
+          <button class="mobile-menu-button focus:outline-none">
+            <i class="bx bx-menu text-3xl mt-1"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- mobile menu -->
+    <div class="mobile-menu hidden md:hidden">
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Home</a>
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Albums</a>
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Tracks</a>
+      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Artists</a>
+    </div>
+  </nav>
+  <!-- content goes here -->
 
-<router-view />
+  <div class="py-32 pageContent p-3"><router-view /></div>
 </template>
 
 <script>
-import logo from './assets/music3.png'
+import logo from "./assets/music3.png";
 
 export default {
-  name: 'App',
+  name: "App",
 
   data: () => ({
-    
-     logo,
-    
+    logo,
   }),
   methods: {
     createalbum() {
-      this.$router.push({ name: 'createalbum' });
+      this.$router.push({ name: "createalbum" });
     },
-    search()
-    {
-       this.$emit('changeUsername')
-      this.$router.push({ name: 'searchpage' });
-      
-    }
+    showtracks(){
+this.$router.push({ name: "track" });
+    },
+    showartists(){
+this.$router.push({ name: "artist" });
+    },
+    search() {
+      this.$emit("changeUsername");
+      this.$router.push({ name: "searchpage" });
+    },
   },
-
-}
+};
 </script>
 
 <style>
@@ -64,22 +140,22 @@ export default {
   text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
-  
 }
 
-.plus{
+.plus {
   display: inline;
 }
 
-.appName
-{
+.appName {
   font-size: 30px;
   margin-left: 10px;
 }
 
-.addBtn{
-  margin-left: 50%;
+.pageContent{
+  background: linear-gradient(#cd988f, #5a87a3)
 }
 
-
+.addBtn {
+  margin-left: 50%;
+}
 </style>

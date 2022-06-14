@@ -9,7 +9,7 @@ class AlbumsDataService {
   create(data, inputfile) {
     let formdata = new FormData();
     formdata.append("file", inputfile);
-    return http.post(`/albums?name=${data.name}&artist=${data.artist}&description=${data.description}&publishedYear=${data.year}`, formdata, {
+    return http.post(`/albums?name=${data.name}&artist=${data.artist}&description=${data.description}&publishedYear=${data.year}&artistId=${data.artistId}`, formdata, {
       headers: { "Content-Type": "multipart/form-data"}
     });
   }
